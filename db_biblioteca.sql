@@ -1,0 +1,50 @@
+-- CREATE TABLE leitor (
+--     id SERIAL PRIMARY KEY,
+--     nome VARCHAR(100) NOT NULL,
+--     email VARCHAR(100) NOT NULL UNIQUE,
+--     cpf VARCHAR(11) NOT NULL UNIQUE,
+--     telefone VARCHAR(20) NOT NULL,
+--     data_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP)
+
+-- 	INSERT INTO leitor (id, nome, email, cpf, telefone) 
+-- 	VALUES  (1, 'Carlos Silva', 'carlos.silva@email.com', '12345678901', '11988887777'),
+-- (2, 'Mariana Costa', 'mariana.costa@email.com', '23456789012', '21977776666'),
+-- (3, 'Ana Oliveira', 'ana.oliveira@email.com', '34567890123', '31966665555')
+
+-- SELECT * FROM leitor 
+
+-- CREATE TABLE categorias (
+--     id SERIAL PRIMARY KEY,
+--     nome VARCHAR(50) NOT NULL UNIQUE
+-- );
+-- 
+-- SELECT * FROM categorias 
+-- CREATE TABLE livros (
+--     id SERIAL PRIMARY KEY,
+--     categoria_id INT NOT NULL,
+--     titulo VARCHAR(150) NOT NULL,
+--     isbn VARCHAR(20) NOT NULL UNIQUE,
+--     taxa_diaria DECIMAL(10, 2) NOT NULL,
+--     disponivel BOOLEAN DEFAULT TRUE,
+--     CONSTRAINT fk_livros_categorias FOREIGN KEY (categoria_id) REFERENCES categorias(id),
+--     CONSTRAINT chk_livros_taxa_diaria CHECK (taxa_diaria > 0)
+-- );
+-- INSERT INTO livros (id, categoria_id, titulo, isbn, taxa_diaria, disponivel) VALUES
+-- (1, 1, 'O Senhor dos Anéis', '9788533613379', 6.50, TRUE),
+-- (2, 2, 'Sapiens: Uma Breve História da Humanidade', '9788535925661', 4.00, TRUE),
+-- (3, 3, 'Código Limpo', '9788576082675', 8.00, TRUE);
+-- SELECT * FROM livros 
+-- CREATE TABLE emprestimo (
+--     id SERIAL PRIMARY KEY,
+--     leitor_id INT NOT NULL,
+--     data_emprestimo TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+--     status VARCHAR(20) DEFAULT 'Ativo',
+--     CONSTRAINT fk_emprestimo_leitores FOREIGN KEY (leitor_id) REFERENCES leitores(id),
+--     CONSTRAINT chk_emprestimo_status CHECK (status IN ('Ativo', 'Devolvido', 'Atrasado'))
+-- );
+-- INSERT INTO emprestimo (id, leitor_id, data_emprestimo, status) VALUES
+-- (1, 1, '2026-03-01 10:00:00', 'Devolvido'),
+-- (2, 1, '2026-03-05 14:30:00', 'Ativo'),
+-- (3, 2, '2026-03-10 09:15:00', 'Devolvido'),
+-- (4, 3, '2026-03-12 11:20:00', 'Atrasado');
+-- SELECT * FROM emprestimo 
